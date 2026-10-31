@@ -1,5 +1,656 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
- 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09090d">
+
+<title>APEEX MS — Ночные автоквесты Орска</title>
+<meta name="description" content="APEEX MS — ночные автоквесты в Орске. Загадки, тайны города и приключения за рулём. Собирай команду!">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#09090d;
+  --panel:#111116;
+  --orange:#ff6338;
+  --white:#f5f3f0;
+  --muted:#96949c;
+  --line:rgba(255,255,255,.1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:Inter,sans-serif;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+button{font:inherit}
+
+.container{
+  width:min(1180px,90%);
+  margin:auto;
+}
+
+.header{
+  position:absolute;
+  top:0;left:0;width:100%;
+  z-index:10;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.header-inner{
+  height:88px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{
+  font-family:Unbounded,sans-serif;
+  font-weight:900;
+  font-size:25px;
+  letter-spacing:-2px;
+}
+.logo span{color:var(--orange)}
+.logo small{
+  display:block;
+  font:600 9px Inter;
+  letter-spacing:4px;
+  color:#999;
+  margin-top:5px;
+}
+.nav{
+  display:flex;
+  align-items:center;
+  gap:35px;
+  font-size:13px;
+  color:#c2c0c5;
+}
+.nav a:hover{color:var(--orange)}
+.header-btn{
+  padding:13px 21px;
+  background:var(--orange);
+  border-radius:4px;
+  font-weight:700;
+  font-size:12px;
+  color:#100c0b;
+  transition:.3s;
+}
+.header-btn:hover{background:white;transform:translateY(-2px)}
+
+.hero{
+  min-height:850px;
+  height:100svh;
+  max-height:1050px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  background:
+    linear-gradient(90deg,rgba(5,5,9,.96),rgba(5,5,9,.55) 60%,rgba(5,5,9,.25)),
+    linear-gradient(0deg,var(--bg),transparent 35%),
+    url('images/hero.webp') center/cover;
+}
+.hero:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at 70% 45%,transparent,rgba(0,0,0,.35));
+  pointer-events:none;
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  padding-top:70px;
+  max-width:850px;
+}
+.eyebrow{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:var(--orange);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-bottom:28px;
+}
+.eyebrow:before{
+  content:"";
+  width:30px;height:2px;
+  background:var(--orange);
+}
+.hero h1{
+  font-family:Unbounded,sans-serif;
+  font-size:clamp(48px,8vw,105px);
+  line-height:1.05;
+  font-weight:900;
+  letter-spacing:-6px;
+}
+.hero h1 span{
+  color:var(--orange);
+  display:block;
+}
+.hero-description{
+  margin-top:30px;
+  max-width:510px;
+  color:#c1bec5;
+  font-size:16px;
+  line-height:1.8;
+}
+.hero-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:38px;
+}
+.btn{
+  padding:18px 27px;
+  border-radius:4px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:1px;
+  transition:.3s;
+}
+.btn-primary{
+  background:var(--orange);
+  color:#100b09;
+}
+.btn-primary:hover{
+  background:#fff;
+  transform:translateY(-3px);
+}
+.btn-outline{
+  border:1px solid rgba(255,255,255,.3);
+}
+.btn-outline:hover{border-color:var(--orange);color:var(--orange)}
+
+.hero-bottom{
+  position:absolute;
+  z-index:2;
+  bottom:45px;
+  left:0;width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:#aaa;
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+.section{padding:120px 0}
+.section-label{
+  color:var(--orange);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-bottom:20px;
+}
+.section-title{
+  font-family:Unbounded,sans-serif;
+  font-size:clamp(30px,5vw,55px);
+  line-height:1.2;
+  letter-spacing:-2px;
+}
+.section-subtitle{
+  color:var(--muted);
+  line-height:1.8;
+  max-width:570px;
+  margin-top:20px;
+  font-size:14px;
+}
+
+/* QUEST */
+
+.quest-section{background:#0d0d12}
+.quest-card{
+  margin-top:55px;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  min-height:540px;
+  background:#141319;
+  border:1px solid var(--line);
+  overflow:hidden;
+}
+.quest-image{
+  min-height:400px;
+  background:
+    linear-gradient(0deg,rgba(0,0,0,.3),transparent),
+    url('images/quest-1-hero.webp') center/cover;
+  position:relative;
+}
+.quest-image:after{
+  content:"APEEX MS";
+  position:absolute;
+  bottom:25px;left:30px;
+  font-family:Unbounded;
+  font-weight:900;
+  font-size:12px;
+  letter-spacing:4px;
+  color:rgba(255,255,255,.7);
+}
+.quest-content{
+  padding:55px 45px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.quest-status{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  color:#ff7958;
+  font-size:10px;
+  letter-spacing:2px;
+  font-weight:800;
+  margin-bottom:24px;
+}
+.quest-status:before{
+  content:"";
+  width:7px;height:7px;
+  background:var(--orange);
+  border-radius:50%;
+  box-shadow:0 0 12px var(--orange);
+}
+.quest-content h3{
+  font-family:Unbounded;
+  font-size:clamp(32px,4vw,52px);
+  line-height:1.2;
+  letter-spacing:-2px;
+}
+.quest-content h3 span{color:var(--orange)}
+.quest-text{
+  color:#aaa7b0;
+  font-size:13px;
+  line-height:1.9;
+  margin-top:22px;
+}
+.quest-info{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+  margin:32px 0;
+  padding:25px 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.info-item small{
+  display:block;
+  color:#77747e;
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:9px;
+}
+.info-item strong{
+  font-family:Unbounded;
+  font-size:18px;
+}
+.info-item strong.price{color:var(--orange)}
+.quest-button{align-self:flex-start}
+
+/* FEATURES */
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-top:55px;
+}
+.feature{
+  padding:35px 30px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  transition:.3s;
+}
+.feature:hover{
+  transform:translateY(-7px);
+  border-color:rgba(255,99,56,.5);
+}
+.feature-number{
+  font-family:Unbounded;
+  color:var(--orange);
+  font-size:13px;
+}
+.feature h3{
+  font-family:Unbounded;
+  font-size:17px;
+  margin-top:35px;
+}
+.feature p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.9;
+  margin-top:15px;
+}
+
+/* ABOUT */
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:center;
+}
+.about-image{
+  min-height:450px;
+  background:url('images/about-road.webp') center/cover;
+  border:1px solid var(--line);
+}
+.about-list{
+  margin-top:35px;
+  display:grid;
+  gap:20px;
+}
+.about-item{
+  display:flex;
+  gap:17px;
+  color:#c1bec5;
+  font-size:13px;
+  line-height:1.7;
+}
+.about-item span{
+  color:var(--orange);
+  font-size:18px;
+}
+
+/* CTA */
+
+.cta{
+  padding:100px 0;
+  background:
+    linear-gradient(90deg,rgba(8,8,12,.95),rgba(8,8,12,.75)),
+    url('images/hero.webp') center 60%/cover;
+  text-align:center;
+}
+.cta h2{
+  font-family:Unbounded;
+  font-size:clamp(32px,6vw,65px);
+  letter-spacing:-3px;
+}
+.cta h2 span{color:var(--orange)}
+.cta p{
+  color:#aaa;
+  margin:22px auto 32px;
+  font-size:14px;
+  line-height:1.8;
+  max-width:470px;
+}
+
+/* FOOTER */
+
+.footer{
+  padding:40px 0;
+  border-top:1px solid var(--line);
+}
+.footer-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+}
+.footer-copy{
+  color:#777;
+  font-size:11px;
+}
+.footer-links{
+  display:flex;
+  gap:25px;
+  font-size:11px;
+  color:#aaa;
+}
+.footer-links a:hover{color:var(--orange)}
+
+@media(max-width:800px){
+  .nav{display:none}
+  .header-inner{height:75px}
+  .hero{min-height:750px}
+  .hero h1{letter-spacing:-3px}
+  .hero-bottom{font-size:8px;letter-spacing:1px}
+  .quest-card{grid-template-columns:1fr}
+  .quest-image{min-height:320px}
+  .quest-content{padding:35px 25px}
+  .features{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr;gap:35px}
+  .about-image{min-height:320px}
+  .section{padding:85px 0}
+  .footer-inner{flex-direction:column;text-align:center}
+  .footer-links{flex-wrap:wrap;justify-content:center}
+}
+@media(max-width:450px){
+  .hero h1{font-size:46px}
+  .hero-description{font-size:13px}
+  .hero-buttons .btn{width:100%}
+  .quest-info{gap:18px}
+  .quest-content h3{font-size:32px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      APEEX<span>MS</span>
+      <small>АВТОКВЕСТЫ ОРСК</small>
+    </a>
+
+    <nav class="nav">
+      <a href="#quest">Ближайший квест</a>
+      <a href="#about">О проекте</a>
+      <a href="#features">Почему мы</a>
+    </nav>
+
+    <a class="header-btn" href="https://t.me/onli_apx" target="_blank">
+      TELEGRAM ↗
+    </a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="container hero-content">
+    <div class="eyebrow">Ночные автоквесты · Орск</div>
+
+    <h1>
+      ГОРОД —
+      <span>ТВОЯ ИГРА.</span>
+    </h1>
+
+    <p class="hero-description">
+      Забудь привычные маршруты. Ночные улицы, загадки,
+      секретные точки и команда, с которой каждый поворот
+      становится частью приключения.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#quest" class="btn btn-primary">БЛИЖАЙШИЙ КВЕСТ ↗</a>
+      <a href="about.html" class="btn btn-outline">КАК ЭТО РАБОТАЕТ</a>
+    </div>
+  </div>
+
+  <div class="container hero-bottom">
+    <span>APEEX MS · ORSK</span>
+    <span>НЕ ПРОСТО ПОЕЗДКА. ИГРА.</span>
+    <span>01 / 2026</span>
+  </div>
+</section>
+
+<section class="section quest-section" id="quest">
+  <div class="container">
+    <div class="section-label">Следующая игра</div>
+    <h2 class="section-title">БЛИЖАЙШИЙ<br>АВТОКВЕСТ</h2>
+
+    <div class="quest-card">
+      <div class="quest-image"></div>
+
+      <div class="quest-content">
+        <div class="quest-status">ОТКРЫТА РЕГИСТРАЦИЯ</div>
+
+        <h3>ВЕДЬМИН<br><span>ЧАС</span></h3>
+
+        <p class="quest-text">
+          Город погружается во тьму. Старые легенды оживают,
+          а улицы скрывают то, что лучше было не находить.
+          Собери команду, найди пять печатей и останови
+          то, что пробудилось этой ночью.
+        </p>
+
+        <div class="quest-info">
+          <div class="info-item">
+            <small>Дата</small>
+            <strong>7–8 ноября</strong>
+          </div>
+          <div class="info-item">
+            <small>Формат</small>
+            <strong>Ночной</strong>
+          </div>
+          <div class="info-item">
+            <small>Команда</small>
+            <strong>1–5 чел.</strong>
+          </div>
+          <div class="info-item">
+            <small>Участие</small>
+            <strong class="price">800 ₽</strong>
+          </div>
+        </div>
+
+        <a href="quest-1.html" class="btn btn-primary quest-button">
+          ПОДРОБНЕЕ О КВЕСТЕ ↗
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-label">Больше, чем просто поездка</div>
+    <h2 class="section-title">ТВОЙ ГОРОД.<br>НОВЫЕ ПРАВИЛА.</h2>
+
+    <p class="section-subtitle">
+      Мы превращаем знакомые улицы в игровое пространство.
+      Здесь важны не скорость и мощность машины, а логика,
+      внимание и командная работа.
+    </p>
+
+    <div class="features">
+      <article class="feature">
+        <div class="feature-number">01 / EXPERIENCE</div>
+        <h3>АТМОСФЕРА</h3>
+        <p>
+          Ночные улицы, необычные сценарии, музыка и задания,
+          которые погружают в совершенно другую реальность.
+        </p>
+      </article>
+
+      <article class="feature">
+        <div class="feature-number">02 / TEAMWORK</div>
+        <h3>КОМАНДА</h3>
+        <p>
+          Собирай друзей, распределяйте роли и вместе
+          ищите решения. Побеждает сообразительность.
+        </p>
+      </article>
+
+      <article class="feature">
+        <div class="feature-number">03 / ADVENTURE</div>
+        <h3>ПРИКЛЮЧЕНИЕ</h3>
+        <p>
+          Неизвестные точки, шифры, неожиданные повороты
+          и эмоции, которые не получишь дома.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container about-grid">
+    <div class="about-image"></div>
+
+    <div>
+      <div class="section-label">Что такое APEEX MS</div>
+      <h2 class="section-title">ОРСК<br>СТАНОВИТСЯ<br>ИГРОЙ.</h2>
+
+      <p class="section-subtitle">
+        Автоквест — это командная ночная игра на автомобилях.
+        Ты получаешь задания, разгадываешь загадки и
+        отправляешься искать нужные места в городе.
+      </p>
+
+      <div class="about-list">
+        <div class="about-item">
+          <span>✦</span>
+          <div>Собираешь экипаж и регистрируешься на игру.</div>
+        </div>
+        <div class="about-item">
+          <span>✦</span>
+          <div>Получаешь задания и разгадываешь подсказки.</div>
+        </div>
+        <div class="about-item">
+          <span>✦</span>
+          <div>Исследуешь город и проходишь игровые точки.</div>
+        </div>
+        <div class="about-item">
+          <span>✦</span>
+          <div>Добираешься до финиша и узнаёшь результат.</div>
+        </div>
+      </div>
+
+      <a href="about.html" class="btn btn-outline" style="margin-top:35px">
+        УЗНАТЬ БОЛЬШЕ ↗
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <div class="section-label">Твоя очередь</div>
+    <h2>ГОТОВ ВЫЙТИ<br>ЗА <span>РАМКИ?</span></h2>
+    <p>
+      Собирай команду. Следи за анонсами.
+      Следующая ночь может стать незабываемой.
+    </p>
+    <a href="https://t.me/onli_apx" target="_blank" class="btn btn-primary">
+      ПРИСОЕДИНИТЬСЯ В TELEGRAM ↗
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <a href="index.html" class="logo">
+      APEEX<span>MS</span>
+      <small>АВТОКВЕСТЫ ОРСК</small>
+    </a>
+
+    <div class="footer-copy">© 2026 APEEX MS · ORSK</div>
+
+    <div class="footer-links">
+      <a href="quests.html">Квесты</a>
+      <a href="about.html">О проекте</a>
+      <a href="https://t.me/onli_apx" target="_blank">Telegram ↗</a>
+    </div>
+  </div>
+</footer>
+
+</body>
 </html>
+```
