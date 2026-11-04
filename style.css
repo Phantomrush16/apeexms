@@ -1,5 +1,5 @@
 /* ============================================
-   APEEX MS — Автоквесты Орск
+   Phantom Rush — Автоквесты Орск
    Основа: темы, типографика, анимации, кнопки
    ============================================ */
 
@@ -525,7 +525,7 @@ section {
 }
 
 /* ============================================
-   APEEX MS — Пакет 2: шапка, бургер, меню
+   Phantom Rush — Пакет 2: шапка, бургер, меню
    ============================================ */
 
 /* ---------- Кнопка с пульсацией ---------- */
@@ -2590,3 +2590,42 @@ body.theme-halloween .spiderwebs {
   }
 }
 
+
+
+/* PHANTOM RUSH — unified cinematic gold theme inspired by quest-1.html */
+:root {
+  --bg: #080704;
+  --bg-soft: #100d07;
+  --bg-card: #191308;
+  --bg-elevated: #211909;
+  --text: #fff8e8;
+  --text-muted: #b9ad91;
+  --text-dim: #85795e;
+  --accent: #ffd34e;
+  --accent-hover: #ffe99a;
+  --accent-dim: rgba(255, 211, 78, .13);
+  --accent-glow: rgba(255, 190, 30, .35);
+  --secondary: #ff9d19;
+  --secondary-hover: #ffc14f;
+  --border: rgba(255, 211, 78, .14);
+  --border-strong: rgba(255, 211, 78, .24);
+  --border-accent: rgba(255, 211, 78, .4);
+}
+body { background-color: #080704; color: #fff8e8; }
+::selection { background: rgba(255, 211, 78, .32); color: #fff; }
+::-webkit-scrollbar-thumb { background: #b98519; }
+.header, .side-menu__panel, .preloader, .cta__inner, .quest-card,
+.next-quest, .price-block, .faq__item, .about-card, .feature-card {
+  border-color: rgba(255, 211, 78, .18);
+}
+.brand__name, .preloader__logo { color: #ffd34e; }
+.brand__accent { color: #fff8e8; }
+.btn--primary, .btn-primary, .header-btn {
+  background: linear-gradient(135deg, #ffd34e, #ff9d19) !important;
+  color: #160f03 !important;
+  box-shadow: 0 8px 30px rgba(255, 180, 25, .18);
+}
+.btn--primary:hover, .btn-primary:hover, .header-btn:hover {
+  box-shadow: 0 10px 38px rgba(255, 180, 25, .3);
+}
+.gradient-text, .section-label, .eyebrow, .hero__eyebrow { color: #ffd34e; }

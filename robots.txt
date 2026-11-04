@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://phantomrush16.github.io/apeexms/sitemap.xml
+Sitemap: https://phantomrush16.github.io/Phantom Rush/sitemap.xml
